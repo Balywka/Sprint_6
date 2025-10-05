@@ -1,7 +1,9 @@
 import allure
 import pytest
+from Pages.main_page import MainPage
 from Locators.main_page_locators import MainPageLocators
 from data import expected_texts, BASE_URL
+from urls import BASE_URL
 
 
 class TestHomePageSamokat:
@@ -18,7 +20,8 @@ class TestHomePageSamokat:
         (MainPageLocators.ACCORDION_BUTTON_FAQ_6, MainPageLocators.ANSWER_FAQ_6, expected_texts['faq6']),
         (MainPageLocators.ACCORDION_BUTTON_FAQ_7, MainPageLocators.ANSWER_FAQ_7, expected_texts['faq7']),
     ])
-    def test_click_question_shows_answer_faq(self, driver, main_page, question_locator, answer_locator, expected_text):
+    def test_click_question_shows_answer_faq(self, driver,question_locator, answer_locator, expected_text):
+        main_page = MainPage(driver)
         driver.get(BASE_URL)
         main_page.accept_cookies()
         main_page.scroll_to_faq()
@@ -28,7 +31,8 @@ class TestHomePageSamokat:
 
     @allure.title('Проверка нажатия на логотип "Яндекс"')
     @allure.description('Проверка открытия страницы Яндекс.Дзен в новой вкладке')
-    def test_clicking_yandex_logo_opens_dzen_page(self, driver, main_page):
+    def test_clicking_yandex_logo_opens_dzen_page(self, driver):
+        main_page = MainPage(driver)
         driver.get(BASE_URL)
         main_page.accept_cookies()
         main_page.click_logo_yandex_open_dzen_page()
@@ -36,7 +40,8 @@ class TestHomePageSamokat:
 
     @allure.title('Проверка нажатия на логотип "Самокат"')
     @allure.description('Проверка перехода на главную страницу после нажатия на логотип "Самокат"')
-    def test_click_logo_samokat_open_home_page(self, driver, main_page):
+    def test_click_logo_samokat_open_home_page(self, driver):
+        main_page = MainPage(driver)
         driver.get(BASE_URL)
         main_page.accept_cookies()
         main_page.click_logo_open_home_page()
