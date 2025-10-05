@@ -7,8 +7,18 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout)
 
+    def open (self, url):
+        self.driver.get(url)
+
+    def get_current_url(self):
+        return self.driver.current_url
+
     def find_element(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
+
+    def find_elements(self, locator):
+        self.wait.until(EC.presence_of_element_located(locator))
+        return self.driver.find_elements(*locator)
 
     def find_clickable_element(self, locator):
         return self.wait.until(EC.element_to_be_clickable(locator))

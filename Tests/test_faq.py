@@ -22,7 +22,7 @@ class TestHomePageSamokat:
     ])
     def test_click_question_shows_answer_faq(self, driver,question_locator, answer_locator, expected_text):
         main_page = MainPage(driver)
-        driver.get(BASE_URL)
+        main_page.open(BASE_URL)
         main_page.accept_cookies()
         main_page.scroll_to_faq()
         main_page.click_the_question(question_locator)
@@ -33,16 +33,16 @@ class TestHomePageSamokat:
     @allure.description('Проверка открытия страницы Яндекс.Дзен в новой вкладке')
     def test_clicking_yandex_logo_opens_dzen_page(self, driver):
         main_page = MainPage(driver)
-        driver.get(BASE_URL)
+        main_page.open(BASE_URL)
         main_page.accept_cookies()
         main_page.click_logo_yandex_open_dzen_page()
-        assert 'dzen.ru' in driver.current_url
+        assert 'dzen.ru' in main_page.get_current_url()
 
     @allure.title('Проверка нажатия на логотип "Самокат"')
     @allure.description('Проверка перехода на главную страницу после нажатия на логотип "Самокат"')
     def test_click_logo_samokat_open_home_page(self, driver):
         main_page = MainPage(driver)
-        driver.get(BASE_URL)
+        main_page.open(BASE_URL)
         main_page.accept_cookies()
         main_page.click_logo_open_home_page()
-        assert driver.current_url == BASE_URL
+        assert main_page.get_current_url() == BASE_URL

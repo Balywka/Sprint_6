@@ -41,13 +41,13 @@ class OrderPage(BasePage):
     @allure.step('Заполнить дату аренды: "{date}"')
     def set_rental_date(self, date):
         self.send_keys(OrderPageLocators.DATE_INPUT, date)
-        self.driver.find_element(By.TAG_NAME, "body").click()
+        self.click((By.TAG_NAME, "body"))
         return self
 
     @allure.step('Выбрать срок аренды')
     def set_rental_duration(self):
         self.click(OrderPageLocators.RENTAL_PERIOD)
-        options = self.driver.find_elements(*OrderPageLocators.RENTAL_OPTIONS)
+        options = self.find_elements(OrderPageLocators.RENTAL_OPTIONS)
         if options:
             options[0].click()
         return self

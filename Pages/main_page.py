@@ -8,13 +8,9 @@ class MainPage(BasePage):
     def accept_cookies(self):
         self.click(MainPageLocators.ACCEPT_COOKIE_BUTTON)
 
-    @allure.step('Нажать кнопку "Заказать" в шапке')
-    def click_order_button_header(self):
-        self.click(MainPageLocators.ORDER_BUTTON_HEADER)
-
-    @allure.step('Нажать кнопку "Заказать" в теле страницы')
-    def click_order_button_body(self):
-        self.click(MainPageLocators.ORDER_BUTTON_BODY)
+    @allure.step('Нажать кнопку "Заказать" по локатору')
+    def click_order_button_by_locator(self, locator):
+        self.click(locator)
 
     @allure.step('Прокрутить страницу к разделу "Вопросы о важном"')
     def scroll_to_faq(self):
